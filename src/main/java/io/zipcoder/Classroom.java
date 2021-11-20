@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.sql.Array;
+
 public class Classroom {
 
     private Student[] students;
@@ -51,7 +53,19 @@ public class Classroom {
 
     public void removeStudent(String firstName, String lastName){
 
-        for
+        //given the student array
+        for(int i = 0; i<students.length; i++){
+            if(students[i].equals(firstName) || (students[i].equals(lastName)){
+
+            }
+            //remove the elements
+
+
+        }
+
+    }
+
+    public Student getStudentByScore(){
 
     }
 
