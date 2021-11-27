@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import java.sql.Array;
+import java.util.Arrays;
 
 public class Classroom {
 
@@ -82,14 +83,42 @@ public class Classroom {
         students = newStudents;
     }
 
-    public Student getStudentByScore(){
+    public Student[] getStudentByScore(){
+
+        //create a new array
+        //copy all the elements over
+        //sort ordered from highest score to lowest
+        //if two students have equal scores, arrange them alphabetically
+
+        Student[] sortedArray = new Student[students.length];
+
+        for(int i = 0; i<students.length;i++) {
+            sortedArray[i] = students[i];
+        }
+        Arrays.sort(sortedArray,(studentA,studentB)-> { //lambda expression to allow us to create two students to compare
+            //compare student A to student B avg exam score
+            if(studentA.getAverageExamScore().equals(studentB.getAverageExamScore())) {
+                //if student a is equal to student b
+                if (studentA.getFirstName().equals(studentB.getFirstName())) {
+                    //compare student a last name with student b last name
+                    return studentA.getLastName().compareTo(studentB.getLastName());
+                } else {
+                    //compare student a first name to student b first name
+                    return studentA.getFirstName().compareTo(studentB.getFirstName());
+                }
+            }else{
+                //return average exam score of student a to student b
+                return studentB.getAverageExamScore().compareTo(studentA.getAverageExamScore());
+            }
+        });
+        return sortedArray;
 
     }
 
 
     public Student getGradeBook(){
 
-
+        return gradedBook;
     }
 
 
