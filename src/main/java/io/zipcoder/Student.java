@@ -5,12 +5,13 @@ import java.util.*;
 public class Student {
 
 
-    private String name, lastName;
+    private String name, firstName, lastName;
     private List<Double> examScores;
 
 
     public Student(String firstName, String lastName, Double[] testScores){
 
+        this.firstName = firstName;
         this.name = firstName;
         this.lastName= lastName;
         this.examScores = Arrays.asList(testScores);
@@ -87,4 +88,8 @@ public class Student {
     }
 
 
+    public String getFirstName() {
+
+        return firstName;
+    }
 }
