@@ -2,6 +2,9 @@ package io.zipcoder;
 
 import java.sql.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Classroom {
 
@@ -116,9 +119,31 @@ public class Classroom {
     }
 
 
-    public Student getGradeBook(){
+    public Map<Student, Character> getGradeBook(){
+        //returns a mapping of Student objects to a letter grade
+        //create a hashmap, that takes in a key(String = lettergrade) and value(Double =grading curve)
+        //figure out the lowest grade first and the max grade, to determine the ranges of the grades inbetween
+        Map<Student,Character> letterGrade = new HashMap<>();
+        Student[] sortedStudents = getStudentByScore();
+        Double maxScore = sortedStudents[0].getAverageExamScore();
+        for(Student student : sortedStudents) {
+            Character grade;
+            if (student.getAverageExamScore() >= maxScore * .9) {
+                grade = 'A';
+            } else if (student.getAverageExamScore() >= maxScore * .71) {
+                grade = 'B';
+            } else if (student.getAverageExamScore() >= maxScore * .5) {
+                grade = 'C';
+            } else if (student.getAverageExamScore() >= maxScore * .11) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+            letterGrade.put(student,grade);
+        }
 
-        return gradedBook;
+
+        return letterGrade;
     }
 
 
